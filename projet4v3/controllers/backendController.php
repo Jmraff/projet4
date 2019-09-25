@@ -1,39 +1,71 @@
 <?php
 
+require_once 'models/backend/ArticlesModel.php';
+//require 'models/connect/ConnectManager.php';
 
 
-class BackendController
+
+
+
+function isAdmin()
 {
 
-    public function listArticles()
-    {
+    if (!empty($_SESSION['id'])) {
+        $userManager = new UserManager;
+        $connected = $userManager->connected($_SESSION['id']);
 
-        $listArticles = new DisplayPosts();
-        $articles = $listArticles->listArticles();
-
-
-        require 'backend/views/postsView.php';
+        if (($connected['isAdmin']) == 1) {
+            header('Location: index.php?action=isAdmin');
+        } else {
+            throw new Exception("Cet page est réservée à l'auteur");
+        }
+    } else {
+        throw new Exception("Veuillez vous connecter");
     }
-
-    public function displayArticle()
-    {
-
-        $displayArticle = new DisplayPosts();
-
-        $article = $displayArticle->getArticle($_GET['id']);
-
-        require 'backend/views/ArticlesView.php';
-    }
-
-    public function addArticle()
-    {
-
-        $addArticle = new EditPosts;
-        $newArticle = $addArticle->postArticles();
-
-
-        require 'backend/views/editView.php';
-    }
-    public function editArticle()
-    { }
+    require 'views/backend/adminHomeView.php';
 }
+
+
+
+
+
+function adminListArticles()
+{
+
+    $adminListArticles = new DisplayArticles();
+    $articles = $adminListArticles->adminListArticles();
+
+
+
+
+    require 'views/backend/postsView.php';
+}
+
+function displayArticle()
+{
+
+    $displayArticle = new DisplayArticles;
+
+    $article = $displayArticle->getArticle($_GET['id']);
+    if ($article->rowCount() != 1) {
+
+        die('Cet article n\'existe pas !');
+    } else {
+
+        return $article;
+    }
+
+    require 'backend/views/postsView.php';
+}
+
+function addArticle()
+{
+
+    $addArticle = new EditPosts;
+    $newArticle = $addArticle->postArticles();
+
+
+    require 'backend/views/editView.php';
+}
+function editArticle()
+{ }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Multi - Multipurpose Bootstrap theme by Bootstrapious.com</title>
+    <title><?= $title ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -59,36 +59,31 @@
         <div role="document" class="modal-dialog modal-sm">
             <div class="modal-content rounded-0">
                 <div class="modal-header">
-                    <h5 id="loginModalLabel" class="text-uppercase modal-title m-0">Connexion</h5>
+                    <h5 id="loginModalLabel" class="text-uppercase modal-title m-0">Customers login</h5>
                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true" class="small text-muted">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <form action="index.php?action=userConnect" method="post">
                         <div class="form-group">
-                            <input type="email" placeholder="email" name="pseudoconnect" class="form-control">
+                            <input type="email" placeholder="email" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="password" placeholder="password" name="passconnect" class="form-control">
+                            <input type="password" placeholder="password" class="form-control">
                         </div>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Connexion </button>
+                            <button type="submit" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Login </button>
                         </div>
                     </form>
                     <div class="text-center">
                         <p class="text-muted small">Not registered yet?</p>
-                        <p class="small text-muted"> <a href="registerView.php" class="font-weight-bold">Register now!</a> It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
+                        <p class="small text-muted"> <a href="#" class="font-weight-bold">Register now!</a> It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <section style="background: url(/projet4v3/public/img/jumbotron1.jpg)" class="py-5 bg-cover bg-center">
-        <div class="hero-overlay"></div>
-        <div class="container py-5 text-white text-center">
-            <h1 class="text-shadow hero-heading">Billet Simple pour l'Alaska</h1>
-            <p class="text-shadow lead my-4">Jean Forteroche </p>
-            < </div> </section> <section> <?= $content ?>
-    </section>
+
+    <section> <?= $content ?> </section>
     <footer style="background: #eee;" class="pt-5">
         <div class="container py-5">
             <div class="row">
