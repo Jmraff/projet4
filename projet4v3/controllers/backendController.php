@@ -1,7 +1,8 @@
 <?php
 
 require_once 'models/backend/ArticlesModel.php';
-//require 'models/connect/ConnectManager.php';
+require_once 'models/backend/EditArticlesModel.php';
+//require 'models/backend/ConnectManager.php';
 
 
 
@@ -26,7 +27,11 @@ function isAdmin()
 }
 
 
+function editArticlePage()
+{
 
+    require 'views/backend/editView.php';
+}
 
 
 function adminListArticles()
@@ -55,17 +60,17 @@ function displayArticle()
         return $article;
     }
 
-    require 'backend/views/postsView.php';
+    require 'views/backend/postsView.php';
 }
 
-function addArticle()
+function addArticle($title, $content)
 {
 
     $addArticle = new EditPosts;
-    $newArticle = $addArticle->postArticles();
+    $newArticle = $addArticle->postArticles($title, $content);
 
 
-    require 'backend/views/editView.php';
+    require 'views/backend/editView.php';
 }
 function editArticle()
 { }

@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="/projet4v3/public/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="/projet4v3/public/img/favicon.png">
-    <!-- Tweaks for older IEs-->
+    <!-- Tweaks for older IEs  -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -48,7 +48,11 @@
                         <li class="nav-item"><a href="contact.html" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4">Contact </a>
                         </li>
                         <li class="nav-item mt-4 mt-lg-0">
-                            <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Login </button>
+                            <?php if (empty($_SESSION['username'])) { ?>
+                                <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Me connecter </button> <?php
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                    if (!empty($_SESSION['id'])) { ?><button type="button" action="index.php?action=disconnect" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion </button>
+                            <?php } ?>
                         </li>
                     </ul>
                 </div>
@@ -71,12 +75,12 @@
                             <input type="password" placeholder="password" name="passconnect" class="form-control">
                         </div>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Connexion </button>
+                            <button type="submit" name="formconnection" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Connexion </button>
                         </div>
                     </form>
                     <div class="text-center">
                         <p class="text-muted small">Not registered yet?</p>
-                        <p class="small text-muted"> <a href="registerView.php" class="font-weight-bold">Register now!</a> It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
+                        <p class="small text-muted"> <a href="index.php?action=register" class="font-weight-bold">Register now!</a> It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
                     </div>
                 </div>
             </div>
