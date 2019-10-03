@@ -10,16 +10,17 @@ class DisplayArticles extends DBConnectManager
         $db = $this->dbConnect();
 
 
-        $articles = $db->query('SELECT * FROM Articles ORDER BY id DESC');
+        $articles = $db->query('SELECT * FROM Articles ORDER BY postId DESC');
 
         return $articles;
     }
 
-    public function getArticle($id)
+    public function getArticle($postId)
     {
         $db = $this->dbConnect();
-        $article = $db->prepare('SELECT * FROM Articles WHERE id = ?');
-        $article->execute(array($id));
+        $req = $db->prepare('SELECT * FROM Articles WHERE postId = ?');
+        $req->execute(array($_GET['postId']));
+        $article = $req->fetch();
 
         return $article;
     }

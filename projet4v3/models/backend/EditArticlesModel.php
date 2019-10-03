@@ -14,7 +14,7 @@ class EditPosts extends DBConnectManager
         $db = $this->dbConnect();
 
         $edit_id = htmlspecialchars($_GET['edit']);
-        $edit_article = $db->prepare('SELECT * FROM Articles WHERE id = ?');
+        $edit_article = $db->prepare('SELECT * FROM Articles WHERE postId = ?');
         $edit_article->execute(array($edit_id));
         if ($edit_article->rowCount() == 1) {
             $edit_article = $edit_article->fetch();

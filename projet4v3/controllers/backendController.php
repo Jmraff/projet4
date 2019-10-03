@@ -1,30 +1,18 @@
 <?php
 
-require_once 'models/backend/ArticlesModel.php';
-require_once 'models/backend/EditArticlesModel.php';
-//require 'models/backend/ConnectManager.php';
+require 'models/backend/ArticlesModel.php';
+require 'models/backend/EditArticlesModel.php';
+require 'models/frontend/CommentsModel.php';
 
 
 
 
-
-function isAdmin()
+function adminHome()
 {
 
-    if (!empty($_SESSION['id'])) {
-        $userManager = new UserManager;
-        $connected = $userManager->connected($_SESSION['id']);
-
-        if (($connected['isAdmin']) == 1) {
-            header('Location: index.php?action=isAdmin');
-        } else {
-            throw new Exception("Cet page est réservée à l'auteur");
-        }
-    } else {
-        throw new Exception("Veuillez vous connecter");
-    }
     require 'views/backend/adminHomeView.php';
 }
+
 
 
 function editArticlePage()
@@ -45,24 +33,73 @@ function adminListArticles()
 
     require 'views/backend/postsView.php';
 }
-
-function displayArticle()
+function listArticles()
 {
 
-    $displayArticle = new DisplayArticles;
+    $adminListArticles = new DisplayArticles();
+    $articles = $adminListArticles->adminListArticles();
 
-    $article = $displayArticle->getArticle($_GET['id']);
-    if ($article->rowCount() != 1) {
 
-        die('Cet article n\'existe pas !');
-    } else {
 
-        return $article;
-    }
+
+    require 'views/frontend/listArticlesView.php';
+}
+function adminDisplayArticle()
+{
+
+    //     $displayArticle = new DisplayArticles;
+
+    //     $article = $displayArticle->getArticle($_GET['id']);
+    //     if ($article->rowCount() != 1) {
+
+    //         die('Cet article n\'existe pas !');
+    //     } else {
+
+    //         return $article;
+    //     }
 
     require 'views/backend/postsView.php';
 }
+function displayArticle()
+{
 
+    $commentManager = new CommentsManager;
+
+    $displayArticle = new DisplayArticles;
+    $comments = $commentManager->getComments($_GET['postId']);
+
+
+    $article1 = $displayArticle->getArticle($_GET['postId']);
+
+
+
+    require 'views/frontend/chapterView.php';
+}
+function addComment($postId, $userId, $author, $comment)
+{
+
+
+
+
+    if (isset($_POST['submit_comment'])) {
+        if (isset($_GET['postId']) && !empty($_GET['postId'])) {
+
+            if (isset($_POST['comment']) and !empty($_POST['comment'])) {
+
+                if (isset($_SESSION['id']) and !empty($_SESSION['id'])) {
+
+                    $newComment = new CommentsManager;
+                    $addNewComment = $newComment->addComment($_GET['postId'], $_SESSION['id'], $_SESSION['username'], $_POST['comment']);
+                    header('Location: index.php?action=displayArticle&postId=' . $postId);
+
+                    require 'views/frontend/chapterView.php';
+                } else {
+                    echo ("Impossible d\'ajouter le commentaire !");
+                }
+            }
+        }
+    }
+}
 function addArticle($title, $content)
 {
 
@@ -72,5 +109,5 @@ function addArticle($title, $content)
 
     require 'views/backend/editView.php';
 }
-function editArticle()
-{ }
+// function editArticle()
+// { }

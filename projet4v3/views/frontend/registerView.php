@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 <h2>Inscription</h2>
 <br /><br />
-<form method="POST" action="index.php?action=register">
+<form method="POST" action="index.php?action=createUser">
     <table>
         <tr>
 

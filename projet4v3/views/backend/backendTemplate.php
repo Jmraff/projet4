@@ -38,9 +38,9 @@
                 <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right small"><span class="text-uppercase mr-2">Menu</span><i class="fas fa-bars"></i></button>
                 <div id="navbarSupportedContent" class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto d-lg-flex align-items-lg-center">
-                        <li class="nav-item"><a href="index.html" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4 active">Home </a>
+                        <li class="nav-item"><a href="index.php?action=addArticle" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4 active">Ajout article </a>
                         </li>
-                        <li class="nav-item"><a href="editView.php" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4">Text page </a>
+                        <li class="nav-item"><a href="editView.php" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4">Gestion des commentaires </a>
                         </li>
                         <li class="nav-item dropdown"><a id="navbarDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4 dropdown-toggle">Dropdown</a>
                             <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu mt-0"><a href="#" class="dropdown-item small text-uppercase">Dropdown item 1</a><a href="#" class="dropdown-item small text-uppercase">Dropdown item 2</a><a href="#" class="dropdown-item small text-uppercase">Dropdown item 3</a><a href="#" class="dropdown-item small text-uppercase">Dropdown item 4</a></div>
@@ -48,106 +48,24 @@
                         <li class="nav-item"><a href="contact.html" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4">Contact </a>
                         </li>
                         <li class="nav-item mt-4 mt-lg-0">
-                            <button type="button" data-toggle="modal" data-target="#loginModal" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Login </button>
+                            <button type="button" action="index.php?action=disconnect" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion </button>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div id="loginModal" tabindex="-1" role="dialog" aria-lebelledby="loginModalLabel" aria-hidden="true" class="modal fade">
-        <div role="document" class="modal-dialog modal-sm">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                    <h5 id="loginModalLabel" class="text-uppercase modal-title m-0">Customers login</h5>
-                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true" class="small text-muted">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <form action="index.php?action=userConnect" method="post">
-                        <div class="form-group">
-                            <input type="email" placeholder="email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="password" class="form-control">
-                        </div>
-                        <div class="form-group text-center">
-                            <button type="submit" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Login </button>
-                        </div>
-                    </form>
-                    <div class="text-center">
-                        <p class="text-muted small">Not registered yet?</p>
-                        <p class="small text-muted"> <a href="#" class="font-weight-bold">Register now!</a> It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <section> <?= $content ?> </section>
     <footer style="background: #eee;" class="pt-5">
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-8 col-md-6 mb-4">
-                    <h5 class="lined lined-dark mb-3">About Multi</h5>
-                    <p class="text-muted text-small">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus magna. Cras in mi at felis aliquet congue. Vivamus magna. Cras in mi at felis aliquet congue.</p>
-                    <p class="text-muted text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue.</p>
+                    <h5 class="lined lined-dark mb-3">Page Administrateur</h5>
+
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <h5 class="lined lined-dark mb-3">Our offices</h5>
-                    <h6>London</h6>
-                    <p class="text-muted mb-0 text-small">Donec eleifend</p>
-                    <p class="text-muted mb-0 text-small">libero at sagittis</p>
-                    <p class="text-muted mb-4 text-small">mollis + 44 2556 789 8799 </p>
-                    <h6>Paris</h6>
-                    <p class="text-muted mb-0 text-small">Donec eleifend</p>
-                    <p class="text-muted mb-0 text-small">libero at sagittis</p>
-                    <p class="text-muted mb-0 text-small">mollis + 44 2556 789 8799 </p>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <h5 class="lined lined-dark mb-3">Popular Categories</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="footer-link text-small">Graphic design</a></li>
-                        <li><a href="#" class="footer-link text-small">Web design</a></li>
-                        <li><a href="#" class="footer-link text-small">Support</a></li>
-                        <li><a href="#" class="footer-link text-small">Accounting</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <h5 class="lined lined-dark mb-3">Let's be friends</h5>
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-google-plus-g"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="social-link"><i class="fas fa-envelope"></i></a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <h5 class="lined lined-dark mb-3">News and Updates</h5>
-                    <p class="text-muted mb-4 text-small">Sign up to get weekly portion of fresh jobs and news from us.
-                        <form action="#">
-                            <div class="input-group mb-3">
-                                <input type="text" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" class="form-control">
-                                <div class="input-group-append">
-                                    <button id="basic-addon2" type="submit" class="input-group-text"><i class="fas fa-paper-plane"></i></button>
-                                </div>
-                            </div>
-                        </form>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="bg-dark py-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 text-center text-lg-left mb-1 mb-lg-0">
-                        <p class="small text-gray mb-0">©2019 Best company</p>
-                    </div>
-                    <div class="col-lg-6 text-center text-lg-right">
-                        <p class="small text-gray mb-0">Template by <a href="https://bootstrapious.com" class="text-gray">Bootstrapious.com</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </footer>
     <!-- JavaScript files-->
     <script src="/projet4v3/public/vendor/jquery/jquery.min.js"></script>

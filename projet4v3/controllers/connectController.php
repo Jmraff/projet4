@@ -8,6 +8,22 @@ function disconnect()
 
     session_destroy();
 }
+function isAdmin()
+{
+
+    if (!empty($_SESSION['id'])) {
+        $userManager = new UserManager;
+        $connected = $userManager->connected($_SESSION['id']);
+
+        if (($connected['isAdmin']) == '1') {
+            header('Location: index.php?action=adminConnected');
+        } else {
+            throw new Exception("Cet page est réservée à l'auteur");
+        }
+    } else {
+        throw new Exception("Veuillez vous connecter");
+    }
+}
 function createUser()
 {
 
