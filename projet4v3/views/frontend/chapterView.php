@@ -16,37 +16,42 @@
 </div>
 
 <h2>Commentaires:</h2>
-<form method="POST" action="index.php?action=addComment&postId=<?= $article1['postId'] ?>">
+<?php if (empty($_SESSION['username'])) { ?><p>Vous devez être connectés pour poster un commentaire<?php }
+                                                                                                    if (!empty($_SESSION['id'])) { ?>
+        <form method="POST" action="index.php?action=addComment&postId=<?= $article1['postId'] ?>">
 
-    <textarea name="comment" placeholder="Votre commentaire..."></textarea><br />
-    <input type="submit" value="Poster mon commentaire" name="submit_comment" />
+            <textarea name="comment" placeholder="Votre commentaire..."></textarea><br />
+            <input type="submit" value="Poster mon commentaire" name="submit_comment" /><?php } ?>
 
-</form>
+        </form>
 
-<?php
-
-
-
-
+        <?php
 
 
 
 
 
 
-?>
 
 
 
-<?php if (isset($c_msg)) {
-    echo $c_msg;
-} ?>
-<br /><br />
-<?php while ($c = $comments->fetch()) { ?>
-    <?= $c['authorId'] ?><br />
-    <?= $c['comment'] ?><br />
-<?php } ?>
 
-<?php $content = ob_get_clean(); ?>
+        ?>
 
-<?php require('frontendTemplate.php'); ?>
+
+
+        <?php if (isset($c_msg)) {
+            echo $c_msg;
+        } ?>
+        <br /><br />
+        <?php while ($c = $comments->fetch()) { ?>
+            <?= $c['username'] ?><br />
+            <?= $c['comment'] ?><br />
+
+
+            <a href="index.php?action=reportComment&amp;commentsId=<?= $c['commentsId'] ?>&postId=<?= $article1['postId'] ?>" id="report">Signaler</a>
+        <?php } ?>
+
+        <?php $content = ob_get_clean(); ?>
+
+        <?php require('frontendTemplate.php'); ?>

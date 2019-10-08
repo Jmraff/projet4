@@ -9,9 +9,9 @@ class CommentsManager extends DBConnectManager
     {
 
         $db = $this->dbConnect();
-        $ins = $db->prepare('INSERT INTO Comments(idArticles, authorId, authorName, comment, dateCreation) VALUES (?, ?, ?, ?, NOW())');
+        $ins = $db->prepare('INSERT INTO Comments(idArticles, authorId,  comment, dateCreation) VALUES (?, ?, ?,  NOW())');
 
-        $ins->execute(array($_GET['postId'], $_SESSION['id'], $_SESSION['username'], $comment));
+        $ins->execute(array($_GET['postId'], $_SESSION['id'], $comment));
 
         return $ins;
     }
@@ -20,7 +20,7 @@ class CommentsManager extends DBConnectManager
     {
 
         $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT * FROM Comments INNER JOIN Articles  ON  Comments.idArticles = Articles.postId  where Articles.postId = ? ORDER BY dateCreation DESC');
+        $comments = $db->prepare('SELECT Comments.comment, Users.username FROM Comments INNER JOIN Users on Comments.authorId = Users.id where Comments.idArticles = ? ORDER BY dateCreation DESC');
         $comments->execute(array($getid));
         return $comments;
     }
@@ -34,25 +34,20 @@ class CommentsManager extends DBConnectManager
         return $commentA;
     }
 
-    public function deleteCommentPost($postId)
-    {
-        $db = $this->dbConnect();
-        $comment = $db->prepare('DELETE FROM Comments WHERE commentsId = ?');
-        $comment->execute(array($postId));
-    }
 
-    public function deleteComment($commentId)
+
+    public function deleteComment()
     {
         $db = $this->dbConnect();
         $comment = $db->prepare('DELETE FROM Comments WHERE commentsId = ?');
-        $comment->execute(array($commentId));
+        $comment->execute(array());
     }
 
     public function reportComment($commentId)
     {
         $db = $this->dbConnect();
-        $comment = $db->prepare('UPDATE Comments SET report = report + 1 WHERE idArticles = ?');
-        $affectedLines = $comment->execute(array($commentId));
+        $comment = $db->prepare('UPDATE Comments SET report = report + 1 WHERE commentsId = ?');
+        $affectedLines = $comment->execute(array($_GET['commentsId']));
 
         return $affectedLines;
     }
@@ -60,7 +55,7 @@ class CommentsManager extends DBConnectManager
     public function getReportComment()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT idArticles, DATE_FORMAT(dateCreation, \'%d/%m/%Y à %Hh%imin%ss\') AS dateCreation, comment, report FROM Comments WHERE report > 0 ORDER BY report DESC LIMIT 0, 5');
+        $req = $db->query('SELECT idArticles, DATE_FORMAT(dateCreation, \'%d/%m/%Y à %Hh%imin%ss\') AS dateCreation, comment, report, idArticles FROM Comments WHERE report > 0 ORDER BY report DESC LIMIT 0, 5');
 
         return $req;
     }

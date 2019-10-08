@@ -1,9 +1,8 @@
-<?php ob_start(); ?>
-<h1>Mon super blog !</h1>
-<p>Derniers billets du blog :</p>
+<?php ob_start();
 
 
-<?php
+
+
 while ($data = $articles->fetch()) {
     ?>
     <div class="news">

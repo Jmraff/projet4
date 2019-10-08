@@ -1,12 +1,7 @@
 <?php ob_start(); ?>
-<h1>Jean Forteroche</h1>
-<p>Derniers articles</p>
-
-
 <?php
 while ($data = $articles->fetch()) {
-    ?>
-    <div class="news">
+    ?> <div class="news">
         <h3>
             <?= htmlspecialchars($data['title']) ?>
             <em>le <?= $data['creationDate'] ?></em>
@@ -15,7 +10,7 @@ while ($data = $articles->fetch()) {
         <p>
             <?= nl2br(htmlspecialchars($data['content'])) ?>
             <br />
-            <em><a href="post.php?id=<?= $data['id'] ?>">Commentaires</a></em>
+            <em><a href="index.php?action=displayArticle&postId=<?= $data['postId'] ?>">Lire la suite</a></em>
         </p>
     </div>
 <?php

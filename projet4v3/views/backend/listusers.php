@@ -19,4 +19,4 @@ while ($data = $list->fetch()) {
 $list->closeCursor();
 ?>
 <?php $content = ob_get_clean(); ?>
-<?php require('frontendTemplate.php'); ?>
+<?php require('backendTemplate.php'); ?>

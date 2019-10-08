@@ -9,7 +9,8 @@ require 'models/frontend/CommentsModel.php';
 
 function adminHome()
 {
-
+    $adminListArticles = new DisplayArticles();
+    $articles = $adminListArticles->adminListArticles();
     require 'views/backend/adminHomeView.php';
 }
 
@@ -22,6 +23,25 @@ function editArticlePage()
 }
 
 
+
+function manageComments()
+{
+    $commentManager = new CommentsManager;
+    $comments = $commentManager->getReportComment();
+    require 'views/backend/manageCommentsView.php';
+}
+function deleteComment()
+{
+    $commentManager = new CommentsManager;
+    $deleteComment = $commentManager->deleteComment();
+    require 'views/backend/manageCommentsView.php';
+}
+function ignoreComment($commentId)
+{
+    $commentManager = new CommentsManager;
+    $ignoreComment = $commentManager->ignoreComment($commentId);
+    require 'views/backend/manageCommentsView.php';
+}
 function adminListArticles()
 {
 
@@ -44,22 +64,7 @@ function listArticles()
 
     require 'views/frontend/listArticlesView.php';
 }
-function adminDisplayArticle()
-{
 
-    //     $displayArticle = new DisplayArticles;
-
-    //     $article = $displayArticle->getArticle($_GET['id']);
-    //     if ($article->rowCount() != 1) {
-
-    //         die('Cet article n\'existe pas !');
-    //     } else {
-
-    //         return $article;
-    //     }
-
-    require 'views/backend/postsView.php';
-}
 function displayArticle()
 {
 
@@ -74,6 +79,14 @@ function displayArticle()
 
 
     require 'views/frontend/chapterView.php';
+}
+
+function reportComment($commentId, $postId)
+{
+
+    $report = new CommentsManager;
+    $reportComment = $report->reportComment($commentId);
+    header('Location: index.php?action=displayArticle&postId=' . $postId);
 }
 function addComment($postId, $userId, $author, $comment)
 {

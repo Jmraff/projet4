@@ -111,7 +111,6 @@ function userConnect()
                     $_SESSION['username'] = $pass_hach['username'];
                     $_SESSION['email'] = $pass_hach['email'];
                     $_SESSION['isAdmin'] = $pass_hach['isAdmin'];
-                    header("Location: index.php?action=home");
                 }
             } else {
                 echo "Mauvais mail ou mot de passe !";
@@ -120,5 +119,5 @@ function userConnect()
             echo "Tous les champs doivent être complétés !";
         }
     }
-    require 'views/frontend/frontendTemplate.php';
+    //require 'views/frontend/frontendTemplate.php';
 }
