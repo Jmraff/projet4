@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?= $title ?></title>
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -28,13 +28,24 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+
+            selector: '#article_content'
+        });
+    </script>
+
+
+
+
 </head>
 
 <body>
     <!-- navbar-->
     <header class="header">
         <nav class="navbar navbar-expand-lg py-lg-0">
-            <div class="container"><a href="index.html" class="navbar-brand text-uppercase font-weight-bold">Multi.</a>
+            <div class="container"><a href="index.php?action=adminHome" class="navbar-brand text-uppercase font-weight-bold">Accueil</a>
                 <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right small"><span class="text-uppercase mr-2">Menu</span><i class="fas fa-bars"></i></button>
                 <div id="navbarSupportedContent" class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto d-lg-flex align-items-lg-center">
@@ -47,8 +58,7 @@
                         </li>
                         <li class="nav-item"><a href="contact.html" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4">Contact </a>
                         </li>
-                        <li class="nav-item mt-4 mt-lg-0">
-                            <button type="button" action="index.php?action=disconnect" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion </button>
+                        <li class="nav-item mt-4 mt-lg-0"><a href="index.php?action=disconnect" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion </a>
                         </li>
                     </ul>
                 </div>
@@ -56,7 +66,13 @@
         </nav>
     </header>
 
-
+    <section style="background: url(/projet4v3/public/img/jumbotron1.jpg)" class="py-5 bg-cover bg-center">
+        <div class="hero-overlay"></div>
+        <div class="container py-5 text-white text-center">
+            <h1 class="text-shadow hero-heading">Billet Simple pour l'Alaska</h1>
+            <p class="text-shadow lead my-4">Jean Forteroche </p>
+        </div>
+    </section>
     <section> <?= $content ?> </section>
     <footer style="background: #eee;" class="pt-5">
         <div class="container py-5">

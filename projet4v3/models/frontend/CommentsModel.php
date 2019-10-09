@@ -20,14 +20,14 @@ class CommentsManager extends DBConnectManager
     {
 
         $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT Comments.comment, Users.username FROM Comments INNER JOIN Users on Comments.authorId = Users.id where Comments.idArticles = ? ORDER BY dateCreation DESC');
+        $comments = $db->prepare('SELECT Comments.commentsId, Comments.comment, Comments.dateCreation, Users.username FROM Comments INNER JOIN Users on Comments.authorId = Users.id where Comments.idArticles = ? ORDER BY dateCreation DESC');
         $comments->execute(array($getid));
         return $comments;
     }
     public function getComment($commentId)
     {
         $db = $this->dbConnect();
-        $comment = $db->prepare('SELECT commentsId, comment, authorId, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') FROM Comments WHERE id = ?');
+        $comment = $db->prepare('SELECT commentsId, comment, authorId, DATE_FORMAT(comment_date, \'%d/%m/%Y) FROM Comments WHERE id = ?');
         $comment->execute(array($commentId));
         $commentA = $comment->fetch();
 
@@ -36,11 +36,12 @@ class CommentsManager extends DBConnectManager
 
 
 
-    public function deleteComment()
+    public function deleteComment($commentId)
     {
         $db = $this->dbConnect();
-        $comment = $db->prepare('DELETE FROM Comments WHERE commentsId = ?');
-        $comment->execute(array());
+        $deleteComment = $db->prepare('DELETE FROM Comments WHERE commentsId = ?');
+        $deleteComment->execute(array($commentId));
+        return $deleteComment;
     }
 
     public function reportComment($commentId)
@@ -55,15 +56,16 @@ class CommentsManager extends DBConnectManager
     public function getReportComment()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT idArticles, DATE_FORMAT(dateCreation, \'%d/%m/%Y à %Hh%imin%ss\') AS dateCreation, comment, report, idArticles FROM Comments WHERE report > 0 ORDER BY report DESC LIMIT 0, 5');
 
+        $req = $db->prepare('SELECT idArticles, DATE_FORMAT(dateCreation, \'%d/%m/%Y à %Hh%imin%ss\') AS dateCreation, comment, report, idArticles, commentsId FROM Comments WHERE report > 0 ORDER BY report DESC LIMIT 0, 5');
+        $reportedComments = $req->execute(array());
         return $req;
     }
 
     public function ignoreComment($commentId)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE Comments SET report = 0 WHERE idArticles = ?');
+        $req = $db->prepare('UPDATE Comments SET report = 0 WHERE commentsId = ?');
         $affectedLines = $req->execute(array($commentId));
 
         return $affectedLines;

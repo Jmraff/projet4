@@ -1,32 +1,36 @@
 <?php ob_start(); ?>
+
+
 <h2>Modération des commentaires</h2>
 
-<div id="content">
+<div class="container py-5">
 
-    <div id="comments">
+    <?php
+    while ($comment = $comments->fetch()) {
 
-        <?php
-        while ($comment = $comments->fetch()) {
-            ?>
-            <div class="comment">
-                <h3>
-                    <em>le <?= $comment['dateCreation'] ?></em>
-                </h3>
-
-                <p>
-                    <?= nl2br(htmlspecialchars($comment['comment'])) ?> <br />
-
-                </p>
-                <p>Nombre de signalement : <?= $comment['report'] ?></p>
-                <em><a href="index.php?action=deleteComment?commentsId=<?= $comment['commentsId'] ?>" class="adminButton">Supprimer</a></em>
-                <em><a href="index.php?action=ignoreComment?commentsId=<?= $comment['commentsId'] ?>" class="adminButton">Ignorer</a></em>
-            </div>
-        <?php
-        }
-        $comments->closeCursor();
         ?>
+        <div class="jumbotron">
+            <h3>
+                le <?= htmlspecialchars($comment['dateCreation']) ?>
+            </h3>
+            <h5>
+                le <?= htmlspecialchars($comment['dateCreation']) ?>
+            </h5>
 
-    </div>
+            <p>
+                <?= nl2br(htmlspecialchars($comment['comment'])) ?> <br />
+
+            </p>
+            <p>Nombre de signalements : <?= $comment['report'] ?></p>
+            <em><a href="index.php?action=deleteComment&commentsId=<?= $comment['commentsId'] ?>" class="adminButton">Supprimer</a></em>
+            <em><a href="index.php?action=ignoreComment&commentsId=<?= $comment['commentsId'] ?>" class="adminButton">Ignorer</a></em>
+        </div>
+    <?php
+    }
+    $comments->closeCursor();
+    ?>
+
+</div>
 </div>
 <?php $content = ob_get_clean(); ?>
 <?php require 'backendTemplate.php'; ?>

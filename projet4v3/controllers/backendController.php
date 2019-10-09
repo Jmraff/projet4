@@ -30,10 +30,10 @@ function manageComments()
     $comments = $commentManager->getReportComment();
     require 'views/backend/manageCommentsView.php';
 }
-function deleteComment()
+function deleteComment($commentId)
 {
     $commentManager = new CommentsManager;
-    $deleteComment = $commentManager->deleteComment();
+    $deleteComment = $commentManager->deleteComment($commentId);
     require 'views/backend/manageCommentsView.php';
 }
 function ignoreComment($commentId)
@@ -115,10 +115,12 @@ function addComment($postId, $userId, $author, $comment)
 }
 function addArticle($title, $content)
 {
-
-    $addArticle = new EditPosts;
-    $newArticle = $addArticle->postArticles($title, $content);
-
+    if (!empty($_POST['article_title']) && !empty($_POST['article_content'])) {
+        $addArticle = new EditPosts;
+        $newArticle = $addArticle->postArticles($title, $content);
+    } else {
+        $error = "Tous les champs doivent être complétés !";
+    }
 
     require 'views/backend/editView.php';
 }

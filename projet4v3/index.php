@@ -49,11 +49,12 @@ try {
 
                 addComment($_GET['postId'], $_SESSION['id'], $_SESSION['username'], $_POST['comment']);
             } else {
-                echo "erreur";
+                throw new Exception('Le commentaire ne peut être vide :)');
             }
         } elseif ($_GET['action'] == 'reportComment') {
 
             if (isset($_GET['commentsId']) && isset($_GET['postId'])) {
+
                 reportComment($_GET['commentsId'], $_GET['postId']);
             } else {
                 echo "erreur";
@@ -69,17 +70,10 @@ try {
 
                 adminListArticles();
             } elseif ($_GET['action'] == 'addArticle') {
-
-                if (!empty($_POST['article_title']) && !empty($_POST['article_content'])) {
-
-                    addArticle($_POST['article_title'], $_POST['article_content']);
-                } else {
-                    throw new Exception("Erreur : tous les champs ne sont pas remplis !");
-                }
+                addArticle($_POST['article_title'], $_POST['article_content']);
             } elseif ($_GET['action'] == 'adminDisplayArticle') {
                 if (isset($_GET['postId']) && $_GET['postId'] > 0) {
                     adminDisplayArticle();
-                    echo 'display';
                 } else {
                     echo 'Erreur : aucun identifiant de billet envoyé';
                 }
@@ -89,9 +83,9 @@ try {
 
                 manageComments();
             } elseif ($_GET['action'] == 'deleteComment') {
-                deleteComment();
+                deleteComment($_GET['commentsId']);
             } elseif ($_GET['action'] == 'ignoreComment') {
-                ignoreComment($commentId);
+                ignoreComment($_GET['commentsId']);
             }
         } else {
             throw new Exception("Cet page est réservée à l'auteur");
