@@ -10,7 +10,8 @@
         <div class="jumbotron">
             <h1> <?= htmlspecialchars($data['title']) ?></h1>
             <p>Le <?= htmlspecialchars($data['creationDate']) ?></p>
-            <p><a href="index.php?action=displayArticle&postId=<?= $data['postId'] ?>" class="btn btn-primary btn-large">Lire la suite »</a> </p>
+            <p><a href="index.php?action=deleteArticle&postId=<?= $data['postId'] ?>" class="btn btn-primary btn-large">Supprimer »</a> </p>
+            <p><a href="index.php?action=editArticle&postId=<?= $data['postId'] ?>" class="btn btn-primary btn-large">Modifier »</a> </p>
         </div>
 
 

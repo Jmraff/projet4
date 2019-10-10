@@ -69,15 +69,23 @@ try {
             } elseif ($_GET['action'] == 'adminListArticles') {
 
                 adminListArticles();
+            } elseif ($_GET['action'] == 'deleteArticle') {
+
+                deleteArticle($_GET['postId']);
             } elseif ($_GET['action'] == 'addArticle') {
+
                 addArticle($_POST['article_title'], $_POST['article_content']);
+            } elseif ($_GET['action'] == 'updateArticle') {
+                updateArticle($_POST['new_article_title'], $_POST['new_article_content'], $_GET['postId']);
             } elseif ($_GET['action'] == 'adminDisplayArticle') {
                 if (isset($_GET['postId']) && $_GET['postId'] > 0) {
                     adminDisplayArticle();
                 } else {
                     echo 'Erreur : aucun identifiant de billet envoyé';
                 }
-            } elseif ($_GET['action'] == 'editArticlePage') {
+            } elseif ($_GET['action'] == 'newChapter') {
+                newChapter();
+            } elseif ($_GET['action'] == 'editArticle') {
                 editArticlePage();
             } elseif ($_GET['action'] == 'manageComments') {
 

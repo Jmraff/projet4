@@ -14,10 +14,18 @@ function adminHome()
     require 'views/backend/adminHomeView.php';
 }
 
+function newChapter()
+{
 
+    require 'views/backend/addChapterView.php';
+}
 
 function editArticlePage()
 {
+    $editArticle1 = new EditPosts;
+    $displayEditArticle = $editArticle1->editArticles($_GET['postId']);
+
+
 
     require 'views/backend/editView.php';
 }
@@ -124,5 +132,25 @@ function addArticle($title, $content)
 
     require 'views/backend/editView.php';
 }
-// function editArticle()
-// { }
+function updateArticle($updateTitle, $updateContent, $updatePostId)
+{
+    if (!empty($_POST['new_article_title']) && !empty($_POST['new_article_content'])) {
+        $newUpdateArticle = new EditPosts;
+        $updateArticle = $newUpdateArticle->updateArticles($updateTitle, $updateContent, $updatePostId);
+        header('Location: index.php?action=editArticle&postId=' . $updatePostId);
+    } else {
+
+        $error = "Tous les champs doivent être complétés !";
+    }
+
+    require 'views/backend/editView.php';
+}
+
+function deleteArticle($postId)
+{
+
+    $deleteArticle = new EditPosts;
+    $deleteArticleNow = $deleteArticle->deleteArticle($postId);
+    header("Location: index.php?action=adminHome");
+    require 'views/backend/adminHomeView.php';
+}

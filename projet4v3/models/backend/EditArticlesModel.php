@@ -6,21 +6,18 @@ class EditPosts extends DBConnectManager
 {
 
 
-    public function editArticles()
+    public function editArticles($edit_id)
     {
 
 
 
         $db = $this->dbConnect();
 
-        $edit_id = htmlspecialchars($_GET['edit']);
+
         $edit_article = $db->prepare('SELECT * FROM Articles WHERE postId = ?');
         $edit_article->execute(array($edit_id));
-        if ($edit_article->rowCount() == 1) {
-            $edit_article = $edit_article->fetch();
-        } else {
-            die('Erreur : l\'article n\'existe pas...');
-        }
+        $editArticle = $edit_article->fetch();
+        return $editArticle;
     }
 
     public function postArticles($title, $content)
@@ -33,5 +30,21 @@ class EditPosts extends DBConnectManager
         $post = $req->execute(array($title, $content));
 
         return $post;
+    }
+
+    public function updateArticles($updateTitle, $updateContent, $updatePostId)
+    {
+
+        $db = $this->dbConnect();
+        $update = $db->prepare('UPDATE Articles SET title = ?, content = ?, editionDate = NOW() WHERE postId = ?');
+        $update->execute(array($updateTitle, $updateContent, $updatePostId));
+        return $update;
+    }
+    public function deleteArticle($postId)
+    {
+
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM Articles WHERE postId = ?');
+        $req->execute(array($postId));
     }
 }

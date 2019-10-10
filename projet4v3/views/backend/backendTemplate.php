@@ -49,7 +49,7 @@
                 <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right small"><span class="text-uppercase mr-2">Menu</span><i class="fas fa-bars"></i></button>
                 <div id="navbarSupportedContent" class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto d-lg-flex align-items-lg-center">
-                        <li class="nav-item"><a href="index.php?action=editArticlePage" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4 active">Ajout d'un chapitre </a>
+                        <li class="nav-item"><a href="index.php?action=newChapter" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4 active">Ajout d'un chapitre </a>
                         </li>
                         <li class="nav-item"><a href="index.php?action=manageComments" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4">Gestion des commentaires </a>
                         </li>
