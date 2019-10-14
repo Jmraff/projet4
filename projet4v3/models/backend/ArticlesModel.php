@@ -5,7 +5,7 @@ require_once "models/DBConnectModel.php";
 class DisplayArticles extends DBConnectManager
 {
 
-    public function adminListArticles()
+    public function listArticles()
     {
         $db = $this->dbConnect();
 

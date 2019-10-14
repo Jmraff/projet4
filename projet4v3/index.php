@@ -6,7 +6,7 @@ require 'controllers/backendController.php';
 require 'controllers/connectController.php';
 
 
-//Admin
+
 
 
 try {
@@ -19,12 +19,14 @@ try {
         } elseif ($_GET['action'] == 'userConnect') {
             userConnect();
 
-            if ($_SESSION['isAdmin'] == '1') {
+            if ($_SESSION['isAdmin'] == '1') { // check if Admin connect
 
-                header("Location: index.php?action=adminHome");
+                header("Location: index.php?action=adminHome"); // if admin is connected, redirect to admin Homepage
             } else {
-                header("Location: index.php?action=home");
+                header("Location: index.php?action=home"); // if not redirect to user homepage
             }
+
+            // Connection 
         } elseif ($_GET['action'] == 'register') {
             register();
         } elseif ($_GET['action'] == 'createUser') {
@@ -34,6 +36,9 @@ try {
             if (isset($_SESSION['id']))
                 disconnect();
             header("Location: index.php?action=home");
+
+
+            //page redirection
         } elseif ($_GET['action'] == 'listArticles') {
             listArticles();
         } elseif ($_GET['action'] == 'displayArticle') {
@@ -43,13 +48,14 @@ try {
             } else {
                 throw new Exception("Erreur : aucun identifiant de billet envoyé");
             }
+
+
+            //User Comments
         } elseif ($_GET['action'] == 'addComment') {
 
             if (isset($_GET['postId'])) {
-
-                addComment($_GET['postId'], $_SESSION['id'], $_SESSION['username'], $_POST['comment']);
-            } else {
-                throw new Exception('Le commentaire ne peut être vide :)');
+                //secure html entries
+                addComment($_GET['postId'], $_SESSION['id'], $_SESSION['username'], (htmlspecialchars($_POST['comment'])));
             }
         } elseif ($_GET['action'] == 'reportComment') {
 
@@ -59,6 +65,11 @@ try {
             } else {
                 echo "erreur";
             }
+
+
+
+
+            //      ADMIN
         } elseif ($_SESSION['isAdmin'] == '1') {
 
 
@@ -69,6 +80,13 @@ try {
             } elseif ($_GET['action'] == 'adminListArticles') {
 
                 adminListArticles();
+            } elseif ($_GET['action'] == 'adminDisplayArticle') {
+                if (isset($_GET['postId']) && !empty($_GET['postId'])) {
+
+                    adminDisplayArticle();
+                } else {
+                    throw new Exception("Erreur : aucun identifiant de billet envoyé");
+                }
             } elseif ($_GET['action'] == 'deleteArticle') {
 
                 deleteArticle($_GET['postId']);
@@ -99,34 +117,8 @@ try {
             throw new Exception("Cet page est réservée à l'auteur");
         }
     } else {
-        throw new Exception("Veuillez vous connecter");
-
-        //Connection
-
-
+        header("Location: index.php?action=home");
     }
 } catch (Exception $e) {
     echo 'Erreur : ' . $e->getMessage();
 }
-
-
-
-
-
-
-// try {
-
-//     elseif (isset($_GET['action'])) {
-//         if ($_GET['action'] == 'register') {
-
-//             createUser();
-//         }
-//     } elseif ($_GET['action'] == 'userConnect') {
-//         if (isset($_GET['mail']) && $_GET['pseudo'] > 0) {
-//             userConnect();
-//             echo 'display';
-//         }
-//     }
-// } catch (Exception $e) {
-//     echo 'Erreur : ' . $e->getMessage();
-// }

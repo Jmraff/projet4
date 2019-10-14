@@ -34,11 +34,9 @@
 
                     <?= $c['comment'] ?><br />
 
-                    <?php if (empty($_SESSION['username'])) { ?><p><?php }
-                                                                        if (!empty($_SESSION['id'])) { ?>
-                            <a href="index.php?action=reportComment&commentsId=<?= $c['commentsId'] ?>&postId=<?= $article1['postId'] ?>" id="report">Signaler</a>
-                    <?php }
-                    } ?>
+
+                <?php
+                } ?>
 
                 </div>
             </div>
@@ -81,4 +79,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('frontendTemplate.php'); ?>
+<?php require('backendTemplate.php'); ?>

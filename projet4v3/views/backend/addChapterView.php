@@ -4,7 +4,7 @@
 <h1>Page d'ajout de chapitre</h1>
 
 
-<form method="POST" action="/projet4v3/index.php?action=addArticle">
+<form method="POST" action="/index.php?action=addArticle">
     <input type="text" id="article_title" name="article_title" placeholder="Titre" value="">
 
     <textarea id="article_content" name="article_content" placeholder="Contenu de l'article"></textarea><br />

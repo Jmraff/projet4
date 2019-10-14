@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -9,21 +9,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="/projet4v3/public/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/vendor/bootstrap/css/bootstrap.min.css">
     <!-- Google fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
     <!-- Icon fonts-->
-    <link rel="stylesheet" href="/projet4v3/public/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="/public/css/pe-icon-7-stroke.css">
     <!-- Lightbox CSS-->
-    <link rel="stylesheet" href="/projet4v3/public/vendor/lightbox2/css/lightbox.min.css">
+    <link rel="stylesheet" href="/public/vendor/lightbox2/css/lightbox.min.css">
     <!-- Leaflet CSS-->
-    <link rel="stylesheet" href="/projet4v3/public/vendor/leaflet/leaflet.css">
+    <link rel="stylesheet" href="/public/vendor/leaflet/leaflet.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="/projet4v3/public/css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="/public/css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="/projet4v3/public/css/custom.css">
+    <link rel="stylesheet" href="/public/css/custom.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="/projet4v3/public/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/public/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/public/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/public/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/public/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/public/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/public/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/public/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/public/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/public/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/public/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/public/img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/public/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <!-- Tweaks for older IEs-->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -53,11 +69,7 @@
                         </li>
                         <li class="nav-item"><a href="index.php?action=manageComments" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4">Gestion des commentaires </a>
                         </li>
-                        <li class="nav-item dropdown"><a id="navbarDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4 dropdown-toggle">Dropdown</a>
-                            <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu mt-0"><a href="#" class="dropdown-item small text-uppercase">Dropdown item 1</a><a href="#" class="dropdown-item small text-uppercase">Dropdown item 2</a><a href="#" class="dropdown-item small text-uppercase">Dropdown item 3</a><a href="#" class="dropdown-item small text-uppercase">Dropdown item 4</a></div>
-                        </li>
-                        <li class="nav-item"><a href="contact.html" class="nav-link font-weight-bold text-uppercase px-lg-3 py-lg-4">Contact </a>
-                        </li>
+
                         <li class="nav-item mt-4 mt-lg-0"><a href="index.php?action=disconnect" class="btn btn-outline-primary nav-btn btn-sm"> <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion </a>
                         </li>
                     </ul>
@@ -66,7 +78,7 @@
         </nav>
     </header>
 
-    <section style="background: url(/projet4v3/public/img/jumbotron1.jpg)" class="py-5 bg-cover bg-center">
+    <section style="background: url(/public/img/jumbotron1.jpg)" class="py-5 bg-cover bg-center">
         <div class="hero-overlay"></div>
         <div class="container py-5 text-white text-center">
             <h1 class="text-shadow hero-heading">Billet Simple pour l'Alaska</h1>
@@ -84,11 +96,11 @@
 
     </footer>
     <!-- JavaScript files-->
-    <script src="/projet4v3/public/vendor/jquery/jquery.min.js"></script>
-    <script src="/projet4v3/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/projet4v3/public/vendor/lightbox2/js/lightbox.min.js"></script>
-    <script src="/projet4v3/public/vendor/leaflet/leaflet.js"></script>
-    <script src="/projet4v3/public/js/front.js"></script>
+    <script src="/public/vendor/jquery/jquery.min.js"></script>
+    <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/vendor/lightbox2/js/lightbox.min.js"></script>
+    <script src="/public/vendor/leaflet/leaflet.js"></script>
+    <script src="/public/js/front.js"></script>
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </body>

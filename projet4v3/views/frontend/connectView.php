@@ -10,7 +10,7 @@
         <a href="register_view.php">Je n'ai pas de compte</a>
     </form>
     <?php
-    if (isset($erreur)) {
+    if (isset($error)) {
         echo '<font color="red">' . $erreur . "</font>";
     }
     ?>

@@ -8,28 +8,14 @@ function disconnect()
 
     session_destroy();
 }
-function isAdmin()
-{
 
-    if (!empty($_SESSION['id'])) {
-        $userManager = new UserManager;
-        $connected = $userManager->connected($_SESSION['id']);
-
-        if (($connected['isAdmin']) == '1') {
-            header('Location: index.php?action=adminConnected');
-        } else {
-            throw new Exception("Cet page est réservée à l'auteur");
-        }
-    } else {
-        throw new Exception("Veuillez vous connecter");
-    }
-}
 function createUser()
 {
 
     $usermanager = new UserManager;
 
     if (isset($_POST['forminscription'])) {
+        //protect html entries
         $pseudo = htmlspecialchars($_POST['pseudo']);
         $mail = htmlspecialchars($_POST['mail']);
         $mail2 = htmlspecialchars($_POST['mail2']);
@@ -37,15 +23,16 @@ function createUser()
 
 
 
-
+        // check if all fields are not empty
         if (!empty($_POST['pseudo']) and !empty($_POST['mail']) and !empty($_POST['mail2']) and !empty($_POST['pass']) and !empty($_POST['pass2'])) {
             $pseudolength = strlen($pseudo);
             if ($pseudolength <= 255) {
                 if ($mail == $mail2) {
                     if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                        // check if mail already exists
                         $verify_email = $usermanager->checkMail($mail);
                         $verify_email->execute(array($mail));
-
+                        // check if pseudo already exists
                         $verify_pseudo = $usermanager->checkPseudo($pseudo);
                         $verify_pseudo->execute(array($pseudo));
                         $reqmail = $verify_email->rowCount($mail);
@@ -91,6 +78,7 @@ function userConnect()
 
 
     if (isset($_POST['formconnection'])) {
+        //secure html entries
         $pseudoconnect = htmlspecialchars($_POST['pseudoconnect']);
 
         if (!empty($pseudoconnect) and !empty($_POST['passconnect'])) {
@@ -101,22 +89,22 @@ function userConnect()
 
 
             if ($userexist != 0) {
-                $pass_hach = $checkuser->fetch();
+                $userCheck = $checkuser->fetch();
 
-                $mdpconnect = password_verify($_POST['passconnect'], $pass_hach['pass']);
+                $mdpconnect = password_verify($_POST['passconnect'], $userCheck['pass']);
 
                 if ($mdpconnect == true) {
 
-                    $_SESSION['id'] = $pass_hach['id'];
-                    $_SESSION['username'] = $pass_hach['username'];
-                    $_SESSION['email'] = $pass_hach['email'];
-                    $_SESSION['isAdmin'] = $pass_hach['isAdmin'];
+                    $_SESSION['id'] = $userCheck['id'];
+                    $_SESSION['username'] = $userCheck['username'];
+                    $_SESSION['email'] = $userCheck['email'];
+                    $_SESSION['isAdmin'] = $userCheck['isAdmin'];
                 }
             } else {
-                echo "Mauvais mail ou mot de passe !";
+                echo   "Mauvais mail ou mot de passe !";
             }
         } else {
-            echo "Tous les champs doivent être complétés !";
+            echo  "Tous les champs doivent être complétés !";
         }
     }
     //require 'views/frontend/frontendTemplate.php';
